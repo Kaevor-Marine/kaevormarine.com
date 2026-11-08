@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaevor Marine | Uncrewed Surface Vessels</title>
+<meta name="description" content="Kaevor Marine is a developer and operator of uncrewed surface vessels (USVs) for offshore energy, survey, environmental monitoring and maritime safety.">
+<meta property="og:title" content="Kaevor Marine">
+<meta property="og:description" content="Uncrewed surface vessels for work at sea.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b3142">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='15 35 360 340'%3E%3Cpolygon fill='%23F8571C' points='189.963,204.235 282.831,114.262 221.424,114.233 126.918,199.186 239.99,305.323 299.213,305.544'/%3E%3Cpolygon fill='%230B3142' points='318.105,323.063 234.423,323.184 27.504,131.732 27.504,181.841 223.477,369.584 368.269,369.58'/%3E%3Cpolygon fill='%230B3142' points='352.478,44.592 216.708,44.531 116.295,137.864 116.295,41.475 27.504,107.941 116.295,188.038 217.176,95.634 300.98,95.345'/%3E%3Cpolygon fill='%23F8571C' points='105.987,284.775 66.859,245.646 20.353,288.391 105.992,368.146'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b3142;
+    --orange: #f8571c;
+    --sand: #ded9cf;
+    --paper: #fbfcfd;
+    --ink: #030e14;
+    --muted: #4a5a63;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Barlow", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  header { padding: 28px 0; }
+  header .logo { display: block; width: 220px; max-width: 60vw; height: auto; }
+
+  .hero { padding: 56px 0 72px; flex: 1; }
+  .eyebrow {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--orange);
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+  }
+  .eyebrow::before { content: ""; width: 36px; height: 3px; background: var(--orange); }
+  h1 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: clamp(40px, 7vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -.01em;
+    max-width: 14ch;
+  }
+  .lede {
+    margin-top: 24px;
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--muted);
+    max-width: 56ch;
+  }
+  .cta {
+    margin-top: 36px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 14px 26px;
+    border-radius: 2px;
+    transition: background .15s;
+  }
+  .btn:hover, .btn:focus-visible { background: #d9460f; }
+  .cta .note { color: var(--muted); font-size: 15px; }
+
+  .focus { background: var(--navy); color: var(--paper); padding: 56px 0; }
+  .focus h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--sand);
+    margin-bottom: 28px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .item { border-top: 2px solid var(--orange); padding-top: 16px; }
+  .item h3 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .item p { font-size: 15px; color: rgba(251,252,253,.72); }
+
+  footer { background: var(--sand); color: var(--navy); padding: 28px 0; font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+  footer a { color: var(--navy); font-weight: 600; }
+
+  @media (max-width: 860px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 16px; }
+    .grid { grid-template-columns: 1fr; gap: 24px; }
+    .hero { padding: 32px 0 56px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <svg class="logo" role="img" aria-label="Kaevor Marine" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 395.059">
+      <path fill="#0B3142" d="M549.561,202.675h-47.463l-58.304-43.761v43.761H413.12v-92.547h30.675v41.778l57.643-41.778h47.595l-66.897,44.555L549.561,202.675z"/>
+      <path fill="#0B3142" d="M685.367,202.675l-9.52-15.865h-65.047l-9.651,15.865h-34.375l60.025-92.547h34.372l60.025,92.547H685.367z M623.626,165.656h39.399l-19.7-32.525L623.626,165.656z"/>
+      <path fill="#0B3142" d="M771.963,180.199h92.281v22.476H741.288v-92.547h121.635v22.476h-90.96v13.353h85.67v19.038h-85.67V180.199z"/>
+      <path fill="#0B3142" d="M998.811,110.128h33.977l-61.478,92.547h-27.764l-61.478-92.547h35.433l40.72,63.593L998.811,110.128z"/>
+      <path fill="#0B3142" d="M1074.503,202.675c-18.113,0-26.709-8.33-26.709-26.707v-39.133c0-18.379,8.596-26.707,26.709-26.707h84.878c18.112,0,26.708,8.328,26.708,26.707v39.133c0,18.377-8.596,26.707-26.708,26.707H1074.503z M1146.953,178.48c6.214,0,8.461-2.115,8.461-8.461v-27.234c0-6.347-2.248-8.461-8.461-8.461h-60.022c-6.345,0-8.461,2.115-8.461,8.461v27.234c0,6.347,2.116,8.461,8.461,8.461H1146.953z"/>
+      <path fill="#0B3142" d="M1345.059,202.675h-37.418l-25.384-29.747h-42.173v29.747h-30.675v-92.547h107.62c16.923,0,24.063,7.139,24.063,24.062v12.561c0,16.923-7.009,23.93-23.8,24.062L1345.059,202.675z M1240.084,131.148v21.418h63.197c5.419,0,7.137-1.719,7.137-7.139v-7.139c0-5.422-1.719-7.14-7.137-7.14H1240.084z"/>
+      <path fill="#F8571C" d="M484.515,237.816h13.431v63.516h-15.064v-40.65l-22.956,29.58h-8.529l-22.956-29.58v40.65H413.38v-63.516h14.064l28.58,37.294L484.515,237.816z"/>
+      <path fill="#F8571C" d="M626.271,301.332l-5.899-11.886h-38.289l-5.899,11.886h-17.421l33.935-63.516h17.877l33.935,63.516H626.271z M588.071,277.377h26.314l-13.159-26.676L588.071,277.377z"/>
+      <path fill="#F8571C" d="M778.96,301.332h-18.241l-16.602-22.14h-23.048v22.14H705.1v-63.516h55.347c11.162,0,15.788,4.538,15.788,15.788v8.711c0,10.888-4.535,15.516-15.061,15.788L778.96,301.332z M721.069,249.43v18.512h32.938c4.807,0,6.26-1.543,6.26-6.353v-5.807c0-4.809-1.453-6.351-6.26-6.351H721.069z"/>
+      <path fill="#F8571C" d="M840.875,237.816h16.152v63.516h-16.152V237.816z"/>
+      <path fill="#F8571C" d="M980.06,237.816h15.425v63.516h-12.883l-46.457-43.553v43.553h-15.425v-63.516h13.608l45.732,42.919V237.816z"/>
+      <path fill="#F8571C" d="M1075.292,288.447h49.539v12.885h-65.6v-63.516h64.695v12.885h-48.634v12.068h45.005v11.796h-45.005V288.447z"/>
+      <polygon fill="#F8571C" points="189.963,204.235 282.831,114.262 221.424,114.233 126.918,199.186 239.99,305.323 299.213,305.544"/>
+      <polygon fill="#0B3142" points="318.105,323.063 234.423,323.184 27.504,131.732 27.504,181.841 223.477,369.584 368.269,369.58"/>
+      <polygon fill="#0B3142" points="352.478,44.592 216.708,44.531 116.295,137.864 116.295,41.475 27.504,107.941 116.295,188.038 217.176,95.634 300.98,95.345"/>
+      <polygon fill="#F8571C" points="105.987,284.775 66.859,245.646 20.353,288.391 105.992,368.146"/>
+    </svg>
+  </div>
+</header>
+
+<main class="hero">
+  <div class="wrap">
+    <h1>Uncrewed surface vessels for work at sea.</h1>
+    <p class="lede">Kaevor Marine designs, builds and operates uncrewed surface vessels (USVs) for commercial and civil clients, bringing safer, lower-cost and more persistent capability to offshore energy, survey and maritime operations.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:info@kaevormarine.com">info@kaevormarine.com</a>
+      <span class="note">Our full website is on the way. For enquiries and partnerships, get in touch.</span>
+    </div>
+  </div>
+</main>
+
+<section class="focus" aria-labelledby="focus-heading">
+  <div class="wrap">
+    <h2 id="focus-heading">What we do</h2>
+    <div class="grid">
+      <div class="item">
+        <h3>Offshore energy</h3>
+        <p>USV services supporting offshore oil and gas operations.</p>
+      </div>
+      <div class="item">
+        <h3>Survey &amp; infrastructure</h3>
+        <p>Harbour, port and shipping channel survey.</p>
+      </div>
+      <div class="item">
+        <h3>Environmental monitoring</h3>
+        <p>Persistent, low-impact data collection at sea.</p>
+      </div>
+      <div class="item">
+        <h3>Safety &amp; response</h3>
+        <p>Support for water police and search and rescue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="yr">2026</span> Kaevor Marine. All rights reserved.</span>
+    <a href="mailto:info@kaevormarine.com">info@kaevormarine.com</a>
+  </div>
+</footer>
+
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
