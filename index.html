@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kaevor Marine | Uncrewed Surface Vessels</title>
-<meta name="description" content="Kaevor Marine is a developer and operator of uncrewed surface vessels (USVs) for offshore energy, survey, environmental monitoring and maritime safety.">
+<title>Kaevor Marine | Uncrewed Surface Vessels &amp; Marine Consultancy</title>
+<meta name="description" content="Kaevor Marine develops and operates uncrewed surface vessels (USVs) for offshore energy, survey, environmental monitoring and maritime safety, and provides marine consultancy, from dynamic positioning, ROV support and offshore operations to vessel design and project management.">
 <meta property="og:title" content="Kaevor Marine">
-<meta property="og:description" content="Uncrewed surface vessels for work at sea.">
+<meta property="og:description" content="Uncrewed surface vessels and marine consultancy.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0b3142">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='15 35 360 340'%3E%3Cpolygon fill='%23F8571C' points='189.963,204.235 282.831,114.262 221.424,114.233 126.918,199.186 239.99,305.323 299.213,305.544'/%3E%3Cpolygon fill='%230B3142' points='318.105,323.063 234.423,323.184 27.504,131.732 27.504,181.841 223.477,369.584 368.269,369.58'/%3E%3Cpolygon fill='%230B3142' points='352.478,44.592 216.708,44.531 116.295,137.864 116.295,41.475 27.504,107.941 116.295,188.038 217.176,95.634 300.98,95.345'/%3E%3Cpolygon fill='%23F8571C' points='105.987,284.775 66.859,245.646 20.353,288.391 105.992,368.146'/%3E%3C/svg%3E">
@@ -23,7 +23,7 @@
     --muted: #4a5a63;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     font-family: "Barlow", system-ui, sans-serif;
     color: var(--ink);
@@ -36,9 +36,23 @@
   .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
   header { padding: 28px 0; }
+  header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
   header .logo { display: block; width: 220px; max-width: 60vw; height: auto; }
+  nav { display: flex; gap: 24px; }
+  nav a {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--navy);
+    text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+  }
+  nav a:hover, nav a:focus-visible { border-bottom-color: var(--orange); }
 
-  .hero { padding: 56px 0 72px; flex: 1; }
+  .hero { position: relative; overflow: hidden; padding: 56px 0 72px; flex: 1; }
   .eyebrow {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 600;
@@ -57,7 +71,7 @@
     font-size: clamp(40px, 7vw, 76px);
     line-height: 1.02;
     letter-spacing: -.01em;
-    max-width: 14ch;
+    max-width: 20ch;
   }
   .lede {
     margin-top: 24px;
@@ -93,7 +107,8 @@
     margin-bottom: 28px;
   }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-  .item { border-top: 2px solid var(--orange); padding-top: 16px; }
+  .item { position: relative; padding-top: 18px; }
+  .item::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--orange); transform-origin: left; transition: transform .8s cubic-bezier(.2,.7,.2,1) .15s; }
   .item h3 {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 600;
@@ -102,15 +117,75 @@
   }
   .item p { font-size: 15px; color: rgba(251,252,253,.72); }
 
+  .consult { background: var(--paper); color: var(--ink); padding: 64px 0; border-bottom: 1px solid var(--sand); scroll-margin-top: 0; }
+  .consult h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .consult .intro {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.1;
+    max-width: 24ch;
+  }
+  .consult .lede { margin-top: 16px; margin-bottom: 36px; }
+  .consult .item h3 { color: var(--navy); }
+  .consult .item p { color: var(--muted); }
+
   footer { background: var(--sand); color: var(--navy); padding: 28px 0; font-size: 14px; }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
   footer a { color: var(--navy); font-weight: 600; }
 
-  @media (max-width: 860px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  .grid.three { grid-template-columns: repeat(3, 1fr); gap: 36px 32px; }
+
+  /* ---------- Motion ---------- */
+  .hero > .wrap { position: relative; z-index: 2; }
+  .scene { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+
+  /* radar */
+  .radar { position: absolute; top: -40px; right: max(-130px, calc((100% - 1120px) / 2 - 210px)); width: clamp(280px, 40vw, 480px); height: auto; }
+  .radar .ring { fill: none; stroke: var(--navy); stroke-opacity: .13; stroke-width: 1.5; }
+  .radar .sweep { transform-origin: 200px 200px; transform-box: view-box; animation: spin 7s linear infinite; }
+  .radar .blip { fill: var(--orange); opacity: 0; animation: ping 7s linear infinite; }
+
+  @keyframes spin  { to { transform: rotate(360deg); } }
+  @keyframes ping  { 0% { opacity: .95; } 55% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes rise  { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+  /* page-load entrance */
+  header .logo { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .hero h1   { animation: rise .8s cubic-bezier(.2,.7,.2,1) .10s both; }
+  .hero .lede { animation: rise .8s cubic-bezier(.2,.7,.2,1) .25s both; }
+  .hero .cta  { animation: rise .8s cubic-bezier(.2,.7,.2,1) .40s both; }
+  .btn { transition: background .15s, transform .2s; }
+  .btn:hover, .btn:focus-visible { transform: translateY(-2px); }
+
+  /* scroll reveal (classes are added by script, so the page is fully visible without it) */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .item.reveal::before { transform: scaleX(0); }
+  .item.reveal.in::before { transform: scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .item.reveal::before { opacity: 1 !important; transform: none !important; }
+  }
+
+  @media (max-width: 860px) { .grid, .grid.three { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 520px) {
     .wrap { padding: 0 16px; }
-    .grid { grid-template-columns: 1fr; gap: 24px; }
+    .grid, .grid.three { grid-template-columns: 1fr; gap: 24px; }
     .hero { padding: 32px 0 56px; }
+    .radar { width: 260px; top: -30px; right: -70px; opacity: .7; }
+    .consult { padding: 48px 0; }
+    nav { gap: 20px; }
   }
 </style>
 </head>
@@ -136,13 +211,39 @@
       <polygon fill="#0B3142" points="352.478,44.592 216.708,44.531 116.295,137.864 116.295,41.475 27.504,107.941 116.295,188.038 217.176,95.634 300.98,95.345"/>
       <polygon fill="#F8571C" points="105.987,284.775 66.859,245.646 20.353,288.391 105.992,368.146"/>
     </svg>
+    <nav aria-label="Main">
+      <a href="#usv">USVs</a>
+      <a href="#consultancy">Consultancy</a>
+      <a href="mailto:info@kaevormarine.com">Contact</a>
+    </nav>
   </div>
 </header>
 
 <main class="hero">
+  <div class="scene" aria-hidden="true">
+    <svg class="radar" viewBox="0 0 400 400" focusable="false">
+      <circle class="ring" cx="200" cy="200" r="60"/>
+      <circle class="ring" cx="200" cy="200" r="120"/>
+      <circle class="ring" cx="200" cy="200" r="180"/>
+      <line class="ring" x1="200" y1="20" x2="200" y2="380"/>
+      <line class="ring" x1="20" y1="200" x2="380" y2="200"/>
+      <g class="sweep">
+        <path d="M200 200 L200 20 A180 180 0 0 1 315.7 62.1 Z" fill="#f8571c" fill-opacity=".13"/>
+        <line x1="200" y1="200" x2="315.7" y2="62.1" stroke="#f8571c" stroke-opacity=".55" stroke-width="2"/>
+      </g>
+      <circle class="blip" cx="303" cy="162" r="5" style="animation-delay:.6s"/>
+      <circle class="blip" cx="270" cy="321" r="5" style="animation-delay:2.1s"/>
+      <circle class="blip" cx="115" cy="231" r="5" style="animation-delay:4.1s"/>
+      <circle class="blip" cx="104" cy="85" r="5" style="animation-delay:5.4s"/>
+    </svg>
+
+
+
+  </div>
+
   <div class="wrap">
-    <h1>Uncrewed surface vessels for work at sea.</h1>
-    <p class="lede">Kaevor Marine designs, builds and operates uncrewed surface vessels (USVs) for commercial and civil clients, bringing safer, lower-cost and more persistent capability to offshore energy, survey and maritime operations.</p>
+    <h1>Uncrewed vessels and marine expertise for work at sea.</h1>
+    <p class="lede">Kaevor Marine develops uncrewed surface vessels (USVs) that make offshore energy, survey and maritime operations safer, lower-cost and more persistent. Our marine consultancy brings the same hands-on offshore experience to vessels, operations and projects.</p>
     <div class="cta">
       <a class="btn" href="mailto:info@kaevormarine.com">info@kaevormarine.com</a>
       <span class="note">Our full website is on the way. For enquiries and partnerships, get in touch.</span>
@@ -150,7 +251,7 @@
   </div>
 </main>
 
-<section class="focus" aria-labelledby="focus-heading">
+<section class="focus" id="usv" aria-labelledby="focus-heading">
   <div class="wrap">
     <h2 id="focus-heading">What we do</h2>
     <div class="grid">
@@ -174,6 +275,55 @@
   </div>
 </section>
 
+<section class="consult" id="consultancy" aria-labelledby="consult-heading">
+  <div class="wrap">
+    <h2 id="consult-heading">Marine consultancy</h2>
+    <p class="intro">Marine expertise, from first idea to first voyage.</p>
+    <p class="lede">Our team are marine professionals by trade, with hands-on experience across the offshore industry. We advise clients on vessels, operations and projects where the sea sets the rules, from early feasibility through to delivery.</p>
+    <div class="grid three">
+      <div class="item">
+        <h3>Offshore operations &amp; supply</h3>
+        <p>Planning and management of offshore support and supply operations.</p>
+      </div>
+      <div class="item">
+        <h3>Rig moving &amp; barge operations</h3>
+        <p>Rig moves, towage and barge operations, from planning through to execution.</p>
+      </div>
+      <div class="item">
+        <h3>Dynamic positioning</h3>
+        <p>DP operations, procedures and assurance for offshore vessels.</p>
+      </div>
+      <div class="item">
+        <h3>ROV support &amp; diving</h3>
+        <p>Vessel and operational support for ROV, survey and diving work.</p>
+      </div>
+      <div class="item">
+        <h3>Accommodation barges</h3>
+        <p>Concepts, operations and management for accommodation barges and floating accommodation.</p>
+      </div>
+      <div class="item">
+        <h3>Firefighting, standby &amp; guard vessels</h3>
+        <p>Firefighting, standby and guard vessel capability for offshore assets and infrastructure.</p>
+      </div>
+      <div class="item">
+        <h3>Vessel design &amp; marine innovation</h3>
+        <p>Concept and feasibility studies, including electric, hybrid and solar propulsion, and new marine technologies.</p>
+      </div>
+      <div class="item">
+        <h3>Marine cyber security</h3>
+        <p>Cyber security for vessels, ports and marine systems.</p>
+      </div>
+      <div class="item">
+        <h3>Project management</h3>
+        <p>Hands-on management of complex marine and offshore projects.</p>
+      </div>
+    </div>
+    <div class="cta">
+      <a class="btn" href="mailto:info@kaevormarine.com?subject=Marine%20consultancy%20enquiry">Discuss a project</a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <span>&copy; <span id="yr">2026</span> Kaevor Marine. All rights reserved.</span>
@@ -182,5 +332,25 @@
 </footer>
 
 <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+<script>
+(function () {
+  if (!("IntersectionObserver" in window) ||
+      (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  var els = document.querySelectorAll(".focus h2, .consult h2, .consult .intro, .consult .lede, .item, .consult .cta");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
+  Array.prototype.forEach.call(els, function (el) {
+    if (el.classList.contains("item")) {
+      var i = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.transitionDelay = ((i % 3) * 90) + "ms";
+    }
+    el.classList.add("reveal");
+    io.observe(el);
+  });
+})();
+</script>
 </body>
 </html>
