@@ -21,7 +21,9 @@
     --paper: #fbfcfd;
     --ink: #030e14;
     --muted: #4a5a63;
+    --wrapw: 1120px;
   }
+  @media (min-width: 1600px) { :root { --wrapw: 1360px; } }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
@@ -33,7 +35,7 @@
     display: flex;
     flex-direction: column;
   }
-  .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .wrap { width: 100%; max-width: var(--wrapw); margin: 0 auto; padding: 0 24px; }
 
   header { padding: 28px 0; }
   header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
@@ -52,7 +54,21 @@
   }
   nav a:hover, nav a:focus-visible { border-bottom-color: var(--orange); }
 
-  .hero { position: relative; overflow: hidden; padding: 56px 0 72px; flex: 1; }
+  .hero { --radar: clamp(220px, 26vw, 380px); position: relative; overflow: hidden; display: flex; align-items: center; padding: 24px 0 32px; flex: 1; }
+  .hero { background: radial-gradient(ellipse 60% 75% at 78% 50%, rgba(222,217,207,.55), rgba(222,217,207,0) 70%); }
+  .splash-foot { background: var(--navy); color: var(--paper); border-top: 3px solid var(--orange); border-bottom: 1px solid rgba(251,252,253,.14); }
+  .splash-foot .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding: 22px 24px; }
+  .splash-foot .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 28px; }
+  .splash-foot .tags li, .splash-foot .scroll {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; font-size: 14px; color: var(--sand);
+  }
+  .splash-foot .tags li { display: flex; align-items: center; }
+  .splash-foot .tags li + li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); margin-right: 28px; }
+  .splash-foot .scroll { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--paper); }
+  .splash-foot .scroll:hover, .splash-foot .scroll:focus-visible { color: var(--orange); }
+  .splash-foot .scroll svg { animation: nudge 1.8s ease-in-out infinite; }
+  @keyframes nudge { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(4px); } }
+  .splash { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
   .eyebrow {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 600;
@@ -68,10 +84,10 @@
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 600;
     color: var(--navy);
-    font-size: clamp(40px, 7vw, 76px);
+    font-size: clamp(40px, 4.6vw, 58px);
     line-height: 1.02;
     letter-spacing: -.01em;
-    max-width: 20ch;
+    max-width: calc(100% - var(--radar) - 32px);
   }
   .lede {
     margin-top: 24px;
@@ -103,8 +119,18 @@
     letter-spacing: .14em;
     text-transform: uppercase;
     font-size: 14px;
-    color: var(--sand);
-    margin-bottom: 28px;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .focus .intro {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 600;
+    color: var(--paper);
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.1;
+    max-width: 34ch;
+    text-wrap: balance;
+    margin-bottom: 36px;
   }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
   .item { position: relative; padding-top: 18px; }
@@ -133,7 +159,8 @@
     color: var(--navy);
     font-size: clamp(28px, 4vw, 40px);
     line-height: 1.1;
-    max-width: 24ch;
+    max-width: 34ch;
+    text-wrap: balance;
   }
   .consult .lede { margin-top: 16px; margin-bottom: 36px; }
   .consult .item h3 { color: var(--navy); }
@@ -150,11 +177,29 @@
   .scene { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 
   /* radar */
-  .radar { position: absolute; top: -40px; right: max(-130px, calc((100% - 1120px) / 2 - 210px)); width: clamp(280px, 40vw, 480px); height: auto; }
+  .radar { position: absolute; top: 50%; transform: translateY(-50%); right: max(24px, calc((100% - var(--wrapw)) / 2 + 24px)); width: var(--radar); height: auto; }
   .radar .ring { fill: none; stroke: var(--navy); stroke-opacity: .13; stroke-width: 1.5; }
   .radar .sweep { transform-origin: 200px 200px; transform-box: view-box; animation: spin 7s linear infinite; }
   .radar .blip { fill: var(--orange); opacity: 0; animation: ping 7s linear infinite; }
 
+  @media (min-width: 701px) {
+    .hero .cta, .hero .lede { max-width: calc(100% - var(--radar) - 32px); }
+    .hero .lede { max-width: min(56ch, calc(100% - var(--radar) - 32px)); }
+  }
+  @media (min-width: 1600px) {
+    .hero { --radar: 440px; }
+    h1 { font-size: 68px; }
+    .hero .lede { font-size: 22px; }
+  }
+  @media (max-width: 700px) {
+    .splash-foot .tags li:nth-child(n+2), .splash-foot .scroll span { display: none; }
+    .splash-foot .wrap { padding: 16px; flex-wrap: nowrap; }
+    .splash-foot .tags { flex-wrap: nowrap; gap: 14px; }
+    .splash-foot .tags li { font-size: 12px; letter-spacing: .08em; white-space: nowrap; }
+    .splash-foot .tags li + li::before { margin-right: 14px; }
+    h1 { max-width: none; }
+    .radar { right: -60px; opacity: .6; }
+  }
   @keyframes spin  { to { transform: rotate(360deg); } }
   @keyframes ping  { 0% { opacity: .95; } 55% { opacity: 0; } 100% { opacity: 0; } }
   @keyframes rise  { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
@@ -182,8 +227,9 @@
   @media (max-width: 520px) {
     .wrap { padding: 0 16px; }
     .grid, .grid.three { grid-template-columns: 1fr; gap: 24px; }
-    .hero { padding: 32px 0 56px; }
-    .radar { width: 260px; top: -30px; right: -70px; opacity: .7; }
+    .hero { padding: 24px 0 24px; }
+    .radar { width: 220px; top: 40%; right: -60px; opacity: .7; }
+    h1 { max-width: none; }
     .consult { padding: 48px 0; }
     nav { gap: 20px; }
   }
@@ -191,6 +237,7 @@
 </head>
 <body>
 
+<div class="splash">
 <header>
   <div class="wrap">
     <svg class="logo" role="img" aria-label="Kaevor Marine" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 395.059">
@@ -242,7 +289,7 @@
   </div>
 
   <div class="wrap">
-    <h1>Uncrewed vessels and marine expertise for work at sea.</h1>
+    <h1>Uncrewed vessels and marine expertise for work at sea</h1>
     <p class="lede">Kaevor Marine develops uncrewed surface vessels (USVs) that make offshore energy, survey and maritime operations safer, lower-cost and more persistent. Our marine consultancy brings the same hands-on offshore experience to vessels, operations and projects.</p>
     <div class="cta">
       <a class="btn" href="mailto:info@kaevormarine.com">info@kaevormarine.com</a>
@@ -251,9 +298,25 @@
   </div>
 </main>
 
+<div class="splash-foot">
+  <div class="wrap">
+    <ul class="tags">
+      <li>Uncrewed surface vessels</li>
+      <li>Marine consultancy</li>
+      <li>Offshore energy &amp; survey</li>
+    </ul>
+    <a class="scroll" href="#usv" aria-label="Scroll to what we do">
+      <span>Scroll</span>
+      <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="#f8571c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+    </a>
+  </div>
+</div>
+</div>
+
 <section class="focus" id="usv" aria-labelledby="focus-heading">
   <div class="wrap">
-    <h2 id="focus-heading">What we do</h2>
+    <h2 id="focus-heading">Uncrewed surface vessels</h2>
+    <p class="intro">USVs that are safer, lower&#8209;cost and more persistent</p>
     <div class="grid">
       <div class="item">
         <h3>Offshore energy</h3>
@@ -278,7 +341,7 @@
 <section class="consult" id="consultancy" aria-labelledby="consult-heading">
   <div class="wrap">
     <h2 id="consult-heading">Marine consultancy</h2>
-    <p class="intro">Marine expertise, from first idea to first voyage.</p>
+    <p class="intro">Marine expertise, from first idea to first voyage</p>
     <p class="lede">Our team are marine professionals by trade, with hands-on experience across the offshore industry. We advise clients on vessels, operations and projects where the sea sets the rules, from early feasibility through to delivery.</p>
     <div class="grid three">
       <div class="item">
@@ -336,7 +399,7 @@
 (function () {
   if (!("IntersectionObserver" in window) ||
       (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
-  var els = document.querySelectorAll(".focus h2, .consult h2, .consult .intro, .consult .lede, .item, .consult .cta");
+  var els = document.querySelectorAll(".focus h2, .focus .intro, .consult h2, .consult .intro, .consult .lede, .item, .consult .cta");
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
